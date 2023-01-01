@@ -116,19 +116,3 @@ class scraping:
             writer = csv.writer(f)
             for i in range(len(texts)):
                writer.writerow([texts[i]])
-
-
-
-'''
-
-12/31 骨組みは完成した。
-どのタグを取得するのかを指定できるようにしたい。複数の場合に備えて、listで引数を受け取る。そして、for文でfind_allして、指定されたタグすべてを取得できるように。
-でも、href、srcとかだと、for文で一つ一つ.getしないといけないし、タグだけじゃ、href、srcがほしいということがわからないから、適用できない。
-まずは、text(<p><h1>)とかでやってみよう。
-
-'''
-
-
-a = scraping()
-a.website_url = "https://next-enviro.co.jp/"
-a.texts_csv()
