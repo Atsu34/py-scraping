@@ -70,7 +70,7 @@ class scraping:
 
         for text in tag_texts:
             texts.append(re.sub('<.+?>', "", str(text)))
-            
+
         return texts
 
 
@@ -121,7 +121,3 @@ class scraping:
             writer = csv.writer(f)
             for i in range(len(texts)):
                writer.writerow([texts[i]])
-
-a = scraping()
-a.website_url = "https://remotestance.com/blog/129/"
-a.texts()
