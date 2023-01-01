@@ -56,16 +56,21 @@ class scraping:
     def texts(self):
         from bs4 import BeautifulSoup
         import csv
+        import re
 
         page = self.gethtml()
         soup = BeautifulSoup(page.content, "html.parser")
+        tag_texts = []
         texts = []
 
-        texts.extend(soup.find_all('p'))
-        texts.extend(soup.find_all("h1"))        
-        texts.extend(soup.find_all("h2"))
-        texts.extend(soup.find_all("title"))
+        tag_texts.extend(soup.find_all('p'))
+        tag_texts.extend(soup.find_all("h1"))        
+        tag_texts.extend(soup.find_all("h2"))
+        tag_texts.extend(soup.find_all("title"))
 
+        for text in tag_texts:
+            texts.append(re.sub('<.+?>', "", str(text)))
+            
         return texts
 
 
@@ -116,3 +121,7 @@ class scraping:
             writer = csv.writer(f)
             for i in range(len(texts)):
                writer.writerow([texts[i]])
+
+a = scraping()
+a.website_url = "https://remotestance.com/blog/129/"
+a.texts()
